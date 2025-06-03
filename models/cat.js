@@ -33,4 +33,5 @@ const Cat = sequelize.define('Cat', {
 User.hasMany(Cat, { foreignKey: 'userId' });
 Cat.belongsTo(User, { foreignKey: 'userId' });
 
+
 module.exports = Cat;

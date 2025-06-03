@@ -15,16 +15,12 @@ exports.register = async (req, res) => {
   const { fullName, email, password } = req.body;
   try {
     const user = await User.create({ fullName, email, password });
-    res
-      .status(201)
-      .json({
-        message: "User created",
-        user: { fullName: user.fullName, email: user.email },
-      });
+    res.status(201).json({
+      message: "User created",
+      user: { fullName: user.fullName, email: user.email },
+    });
   } catch (err) {
-    res
-      .status(500)
-      .json({ message: "Registration failed", error: err.message });
+    res.status(500).json({ message: "Registration failed" });
   }
 };
 
@@ -50,7 +46,7 @@ exports.login = async (req, res) => {
     });
     res.json({ token });
   } catch (err) {
-    res.status(500).json({ message: "Login failed", error: err.message });
+    res.status(500).json({ message: "Login failed" });
   }
 };
 
@@ -63,7 +59,7 @@ exports.validateEmail = async (req, res) => {
     }
     res.json({ isUnique: true });
   } catch (err) {
-    res.status(500).json({ message: "Validation error", error: err.message });
+    res.status(500).json({ message: "Validation error" });
   }
 };
 
@@ -75,6 +71,6 @@ exports.getProfile = async (req, res) => {
     if (!user) return res.status(404).json({ message: "User not found" });
     res.json(user);
   } catch (err) {
-    res.status(500).json({ message: "Get profile failed", error: err.message });
+    res.status(500).json({ message: "Get profile failed" });
   }
 };
